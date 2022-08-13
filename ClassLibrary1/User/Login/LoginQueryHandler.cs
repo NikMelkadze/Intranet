@@ -1,12 +1,20 @@
-﻿using MediatR;
+﻿using Intranet.Application.Services;
+using MediatR;
 
 namespace Intranet.Application.User.Login
 {
     public class LoginQueryHandler : IRequestHandler<LoginQuery, LoginResponse>
     {
-        public Task<LoginResponse> Handle(LoginQuery request, CancellationToken cancellationToken)
+        private readonly IUserService _userService;
+
+        public LoginQueryHandler(IUserService userService)
         {
-            return  Task.FromResult(new LoginResponse { Message = "Success", Status = "200" });
+            _userService = userService;
+        }
+
+        public async Task<LoginResponse> Handle(LoginQuery request, CancellationToken cancellationToken)
+        {
+            return await _userService.Login(request);
         }
     }
 }
