@@ -64,7 +64,7 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
+        Type = SecuritySchemeType.Http,
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
@@ -76,9 +76,11 @@ builder.Services.AddSwaggerGen(c =>
                 Reference = new OpenApiReference {
                     Type = ReferenceType.SecurityScheme,
                         Id = "Bearer"
-                }
+                },
+                Name="Bearer",
+                In=ParameterLocation.Header
             },
-            new string[] { "Bearer" }
+            new string[] { }
         }
     });
 });

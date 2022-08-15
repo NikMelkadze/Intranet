@@ -30,11 +30,5 @@ namespace Intranet.Controllers
             return await Mediator.Send(new RegisterQuery { Email = model.Email, Password = model.Password });
         }
 
-        [Authorize]
-        [HttpPost("Info")]
-        public async Task<ActionResult> UserInfo([FromHeader] UserInfoQuery model)
-        {
-            return Ok("rame");
-        }
     }
 }
