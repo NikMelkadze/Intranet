@@ -14,8 +14,8 @@ namespace Intranet.Persistance
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
             builder.Entity<Interest>().HasKey(x => x.Id);
+            base.OnModelCreating(builder);
 
         }
     }
