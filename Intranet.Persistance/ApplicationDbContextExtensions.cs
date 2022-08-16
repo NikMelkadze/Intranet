@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-
+using Intranet.Persistance.Services;
+using Intranet.Persistance.Contracts;
 
 namespace Intranet.Persistance
 {
@@ -19,6 +19,8 @@ namespace Intranet.Persistance
             _ = services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            _ = services.AddTransient<IRepository<Interest>, InterestRepository>();
 
             return services;
         }

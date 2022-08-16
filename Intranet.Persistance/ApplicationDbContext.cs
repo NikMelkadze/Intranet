@@ -6,6 +6,7 @@ namespace Intranet.Persistance
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Interest> Interests { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -14,6 +15,8 @@ namespace Intranet.Persistance
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<Interest>().HasKey(x => x.Id);
+
         }
     }
 }

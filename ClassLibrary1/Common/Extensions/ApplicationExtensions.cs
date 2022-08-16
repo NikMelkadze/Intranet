@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Intranet.Application.Catalogs.Interests;
 using Intranet.Application.Services;
 using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
@@ -10,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
-namespace Intranet.Application
+namespace Intranet.Application.Common.Extensions
 {
     public static class ApplicationExtensions
     {
@@ -71,7 +72,7 @@ namespace Intranet.Application
             });
 
             //MediatR
-            _ = services.AddMediatR(typeof(LoginQueryHandler).Assembly, typeof(RegisterQueryHandler).Assembly);
+            _ = services.AddMediatR(typeof(LoginQueryHandler).Assembly, typeof(RegisterQueryHandler).Assembly, typeof(InterestCommand).Assembly);
 
             //FluentVladiation
             _ = services.AddValidatorsFromAssembly(typeof(LoginQuery).Assembly);

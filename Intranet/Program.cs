@@ -1,5 +1,5 @@
 using Intranet.Persistance;
-using Intranet.Application;
+using Intranet.Application.Common.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

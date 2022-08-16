@@ -1,8 +1,6 @@
-﻿using Intranet.Application.Services;
-using Intranet.Application.User.Login;
+﻿using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Intranet.Controllers
@@ -10,11 +8,9 @@ namespace Intranet.Controllers
     [Route("/User")]
     public class UserController : ApiControllerBase
     {
-        private readonly IUserService _userService;
 
-        public UserController(IMediator mediator, IUserService userService) : base(mediator)
+        public UserController(IMediator mediator) : base(mediator)
         {
-            _userService = userService;
         }
 
 
