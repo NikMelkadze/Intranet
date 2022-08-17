@@ -21,7 +21,17 @@ namespace Intranet.Application.Catalogs.Interests.DeleteInterest
 
         public async Task<CommandResponse> Handle(DeleteInterestCommand request, CancellationToken cancellationToken)
         {
-             await _repository.DeleteById(request.Id);
+
+            try
+            {
+                await _repository.DeleteById(request.Id);
+
+            }
+            catch (Exception ex)
+            {
+
+                return new CommandResponse { Messsage = "Failed" };
+            }
 
             return new CommandResponse { Messsage = "Success" };
         }

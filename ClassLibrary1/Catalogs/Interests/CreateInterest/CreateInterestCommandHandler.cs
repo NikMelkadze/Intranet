@@ -21,7 +21,17 @@ namespace Intranet.Application.Catalogs.Interests
 
         public async Task<CommandResponse> Handle(CreateInterestCommand request, CancellationToken cancellationToken)
         {
-            var result = await _repository.Create(new Interest { title = request.Title });
+            try
+            {
+                var result = await _repository.Create(new Interest { title = request.Title });
+
+            }
+            catch (Exception ex)
+            {
+
+                return new CommandResponse { Messsage = "Failed" };
+
+            }
             return new CommandResponse { Messsage = "Success" };
         }
     }
