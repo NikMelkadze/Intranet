@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using Intranet.Application.Catalogs.Interests;
+using Intranet.Application.Catalogs.Interests.DeleteInterest;
+using Intranet.Application.Catalogs.Interests.GetInterests;
 using Intranet.Application.Services;
 using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
@@ -72,7 +74,8 @@ namespace Intranet.Application.Common.Extensions
             });
 
             //MediatR
-            _ = services.AddMediatR(typeof(LoginQueryHandler).Assembly, typeof(RegisterQueryHandler).Assembly, typeof(InterestCommand).Assembly);
+            _ = services.AddMediatR(typeof(LoginQueryHandler).Assembly, typeof(RegisterQueryHandler).Assembly, typeof(CreateInterestCommandHandler).Assembly,
+                typeof(GetInterestsQueryHandler).Assembly, typeof(DeleteInterestCommandHandler).Assembly);
 
             //FluentVladiation
             _ = services.AddValidatorsFromAssembly(typeof(LoginQuery).Assembly);

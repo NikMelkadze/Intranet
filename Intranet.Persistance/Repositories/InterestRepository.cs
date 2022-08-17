@@ -18,15 +18,17 @@ namespace Intranet.Persistance.Services
             return model;
         }
 
-        public Task DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var item = await _context.Interests.SingleOrDefaultAsync(x => x.Id == id);
+            _context.Interests.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Interest>> Get()
         {
-            return await _context.Interests.ToListAsync();
-
+            var result = await _context.Interests.ToListAsync();
+            return result;
         }
 
         public Task<Interest> GetById(int id)

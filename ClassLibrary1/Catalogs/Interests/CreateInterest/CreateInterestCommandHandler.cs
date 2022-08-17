@@ -1,4 +1,5 @@
-﻿using Intranet.Persistance.Contracts;
+﻿using Intranet.Application.Common.Models;
+using Intranet.Persistance.Contracts;
 using Intranet.Persistance.Models;
 using MediatR;
 using System;
@@ -9,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace Intranet.Application.Catalogs.Interests
 {
-    public class InterestCommandHandler : IRequestHandler<InterestCommand, InterestResponse>
+    public class CreateInterestCommandHandler : IRequestHandler<CreateInterestCommand, CommandResponse>
     {
         private readonly IRepository<Interest> _repository;
 
-        public InterestCommandHandler(IRepository<Interest> repository)
+        public CreateInterestCommandHandler(IRepository<Interest> repository)
         {
             _repository = repository;
         }
 
-        public async Task<InterestResponse> Handle(InterestCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateInterestCommand request, CancellationToken cancellationToken)
         {
             var result = await _repository.Create(new Interest { title = request.Title });
-            return new InterestResponse { Messsage = "Success" };
+            return new CommandResponse { Messsage = "Success" };
         }
     }
 }
