@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intranet", "Intranet\Intranet.csproj", "{D4580D90-2588-41A5-8EE9-8DE97D662DAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intranet", "Intranet\Intranet.csproj", "{D4580D90-2588-41A5-8EE9-8DE97D662DAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intranet.Persistance", "Intranet.Persistance\Intranet.Persistance.csproj", "{BDEF1924-F0AD-4DEF-BB0A-7E20628CDC17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intranet.Persistance", "Intranet.Persistance\Intranet.Persistance.csproj", "{BDEF1924-F0AD-4DEF-BB0A-7E20628CDC17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intranet.Application", "ClassLibrary1\Intranet.Application.csproj", "{43A9991D-5A7B-4EEB-AEE1-7293D2E5754F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intranet.Application", "ClassLibrary1\Intranet.Application.csproj", "{43A9991D-5A7B-4EEB-AEE1-7293D2E5754F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
