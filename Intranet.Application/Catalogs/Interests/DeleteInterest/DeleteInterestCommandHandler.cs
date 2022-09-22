@@ -12,9 +12,9 @@ namespace Intranet.Application.Catalogs.Interests.DeleteInterest
 {
     public class DeleteInterestCommandHandler : IRequestHandler<DeleteInterestCommand, CommandResponse>
     {
-        private readonly IRepository<Interest> _repository;
+        private readonly IRepository<InterestDTO> _repository;
 
-        public DeleteInterestCommandHandler(IRepository<Interest> repository)
+        public DeleteInterestCommandHandler(IRepository<InterestDTO> repository)
         {
             _repository = repository;
         }

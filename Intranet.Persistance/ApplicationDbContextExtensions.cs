@@ -16,11 +16,11 @@ namespace Intranet.Persistance
             _ = services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));
 
             //Identity
-            _ = services.AddIdentity<ApplicationUser, IdentityRole>()
+            _ = services.AddIdentity<ApplicationUserDTO, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            _ = services.AddTransient<IRepository<Interest>, InterestRepository>();
+            _ = services.AddTransient<IRepository<InterestDTO>, InterestRepository>();
 
             return services;
         }

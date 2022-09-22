@@ -14,7 +14,7 @@ namespace Intranet.Application.Catalogs.Interests.GetInterests
     }
     public class IterestsVM
     {
-        public IEnumerable<Interest> Interests { get; set; }
+        public IEnumerable<InterestDTO> Interests { get; set; }
     }
 
 }

@@ -12,9 +12,9 @@ namespace Intranet.Application.Catalogs.Interests
 {
     public class CreateInterestCommandHandler : IRequestHandler<CreateInterestCommand, CommandResponse>
     {
-        private readonly IRepository<Interest> _repository;
+        private readonly IRepository<InterestDTO> _repository;
 
-        public CreateInterestCommandHandler(IRepository<Interest> repository)
+        public CreateInterestCommandHandler(IRepository<InterestDTO> repository)
         {
             _repository = repository;
         }
@@ -23,7 +23,7 @@ namespace Intranet.Application.Catalogs.Interests
         {
             try
             {
-                var result = await _repository.Create(new Interest { Title = request.Title });
+                var result = await _repository.Create(new InterestDTO { Title = request.Title });
 
             }
             catch (Exception ex)

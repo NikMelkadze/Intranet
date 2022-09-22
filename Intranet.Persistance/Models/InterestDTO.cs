@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Intranet.Persistance.Models
 {
-    public class Interest
+    public class InterestDTO
     {
         public int Id { get; set; }
         public string Title { get; set; }
