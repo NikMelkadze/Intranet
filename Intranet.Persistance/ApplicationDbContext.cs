@@ -1,6 +1,8 @@
 ﻿using Intranet.Persistance.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Reflection.Emit;
 
 namespace Intranet.Persistance
 {
@@ -18,9 +20,8 @@ namespace Intranet.Persistance
             builder.Entity<InterestDTO>().HasKey(x => x.Id);
             base.OnModelCreating(builder);
 
-            builder.Entity<ApplicationUserDTO>().HasOne(x => x.Department).WithOne(y => y.Head).HasForeignKey<DepartmentDTO>(z => z.HeadId);
-            builder.Entity<ApplicationUserDTO>().ToTable("Users");
-            builder.Entity<DepartmentDTO>().ToTable("Departments");
+            builder.Entity<ApplicationUserDTO>().HasOne(x=>x.Department).WithMany(x=>x.Users).HasForeignKey(x=>x.DepartmentId);
+
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Intranet.Persistance.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ApplicationUserDTO Head { get; set; }
-        public string HeadId { get; set; }
+
+        public ICollection<ApplicationUserDTO> Users { get; set; }
     }
 }

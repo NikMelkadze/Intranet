@@ -1,4 +1,5 @@
-﻿using Intranet.Application.User.Login;
+﻿using Intranet.Application.User.GetUser;
+using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -32,10 +33,16 @@ namespace Intranet.Controllers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 PhoneNumber = model.PhoneNumber,
-                PositionId = model.PositionId,
+                Position = model.Position,
                 UserRole = model.UserRole,
             }
             );
+        }
+
+        [HttpGet("UserList")]
+        public async Task<ActionResult<GetUserResponse>> GetUserList()
+        {
+            return await Mediator.Send(new GetUserQuery { });
         }
 
     }

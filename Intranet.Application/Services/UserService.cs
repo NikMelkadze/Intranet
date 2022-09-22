@@ -7,6 +7,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Intranet.Application.User.GetUser;
 
 namespace Intranet.Application.Services
 {
@@ -61,9 +62,10 @@ namespace Intranet.Application.Services
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = request.Email,
                 DateOfBirth = request.DateOfBirth,
-                DepartmentID = request.DepartmentId,
+                DepartmentId = request.DepartmentId,
                 FirstName = request.FirstName,
-                LastName=request.LastName,
+                LastName = request.LastName,
+                Position = request.Position
             };
             var result = await _userManager.CreateAsync(user, request.Password);
 
@@ -78,6 +80,13 @@ namespace Intranet.Application.Services
             };
         }
 
+
+        public GetUserResponse GetUsers()
+        {
+            var result =  _userManager.Users.ToList();
+
+            return new GetUserResponse { };
+        }
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));

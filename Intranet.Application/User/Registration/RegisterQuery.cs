@@ -15,7 +15,7 @@ namespace Intranet.Application.User.Registration
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
-        public int PositionId { get; set; }
+        public string Position { get; set; }
         public int DepartmentId { get; set; }
         public UserRoles UserRole { get; set; }
     }
