@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Intranet.Persistance\Intranet.Persistance.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Catalogs\Departments\" />
+  </ItemGroup>
+
 </Project>
