@@ -9,6 +9,6 @@ namespace Intranet.Persistance.Models
     public class Interest
     {
         public int Id { get; set; }
-        public string title { get; set; }
+        public string Title { get; set; }
     }
 }

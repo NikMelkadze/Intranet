@@ -23,7 +23,7 @@ namespace Intranet.Application.Catalogs.Interests
         {
             try
             {
-                var result = await _repository.Create(new Interest { title = request.Title });
+                var result = await _repository.Create(new Interest { Title = request.Title });
 
             }
             catch (Exception ex)

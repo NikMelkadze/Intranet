@@ -24,7 +24,7 @@ namespace Intranet.Application.Catalogs.Interests.GetInterests
                 Interests = result.Select(x => new Interest
                 {
                     Id = x.Id,
-                    title = x.title
+                    Title = x.Title
                 })
             };
             return response;
