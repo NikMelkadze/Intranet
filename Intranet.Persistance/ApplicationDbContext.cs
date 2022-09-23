@@ -10,6 +10,7 @@ namespace Intranet.Persistance
     {
         public DbSet<InterestDTO> Interests { get; set; }
         public DbSet<DepartmentDTO> Departments { get; set; }
+        public DbSet<ApplicationUserDTO> Users { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Intranet.Persistance.Services;
 using Intranet.Persistance.Contracts;
+using Intranet.Persistance.Repositories;
 
 namespace Intranet.Persistance
 {
@@ -21,6 +22,8 @@ namespace Intranet.Persistance
                 .AddDefaultTokenProviders();
 
             _ = services.AddTransient<IRepository<InterestDTO>, InterestRepository>();
+            _ = services.AddTransient<IRepository<ApplicationUserDTO>, EmployeeRepository>();
+            _ = services.AddTransient<IRepository<DepartmentDTO>, DepartmentRepository>();
 
             return services;
         }

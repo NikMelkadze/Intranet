@@ -8,7 +8,5 @@ namespace Intranet.Application.Services
     {
         public Task<RegisterResponse> Registration(RegisterQuery request);
         public Task<LoginResponse> Login(LoginQuery request);
-        public GetUserResponse GetUsers();
-
     }
 }

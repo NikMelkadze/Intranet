@@ -80,13 +80,6 @@ namespace Intranet.Application.Services
             };
         }
 
-
-        public GetUserResponse GetUsers()
-        {
-            var result =  _userManager.Users.ToList();
-
-            return new GetUserResponse { };
-        }
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));

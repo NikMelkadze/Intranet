@@ -14,7 +14,6 @@ namespace Intranet.Controllers
         {
         }
 
-
         [HttpPost("login")]
         public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginQuery model)
         {
@@ -35,14 +34,7 @@ namespace Intranet.Controllers
                 PhoneNumber = model.PhoneNumber,
                 Position = model.Position,
                 UserRole = model.UserRole,
-            }
-            );
-        }
-
-        [HttpGet("UserList")]
-        public async Task<ActionResult<GetUserResponse>> GetUserList()
-        {
-            return await Mediator.Send(new GetUserQuery { });
+            });
         }
 
     }
