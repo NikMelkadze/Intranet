@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Intranet.Persistance.Services
 {
-    internal class InterestRepository : IRepository<Interest>
+    internal class InterestRepository : IRepository<InterestDTO>
     {
         private readonly ApplicationDbContext _context;
         public InterestRepository(ApplicationDbContext context)
         {
             _context = context;
         }
-        public async Task<Interest> Create(Interest model)
+        public async Task<InterestDTO> Create(InterestDTO model)
         {
             _context.Add(model);
             await _context.SaveChangesAsync();
@@ -25,18 +25,18 @@ namespace Intranet.Persistance.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Interest>> Get()
+        public async Task<IEnumerable<InterestDTO>> Get()
         {
             var result = await _context.Interests.ToListAsync();
             return result;
         }
 
-        public Task<Interest> GetById(int id)
+        public Task<InterestDTO> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Interest> Update(Interest model)
+        public Task<InterestDTO> Update(InterestDTO model)
         {
             throw new NotImplementedException();
         }

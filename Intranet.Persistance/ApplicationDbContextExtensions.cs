@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Intranet.Persistance.Services;
 using Intranet.Persistance.Contracts;
+using Intranet.Persistance.Repositories;
 
 namespace Intranet.Persistance
 {
@@ -16,11 +17,13 @@ namespace Intranet.Persistance
             _ = services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));
 
             //Identity
-            _ = services.AddIdentity<ApplicationUser, IdentityRole>()
+            _ = services.AddIdentity<ApplicationUserDTO, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            _ = services.AddTransient<IRepository<Interest>, InterestRepository>();
+            _ = services.AddTransient<IRepository<InterestDTO>, InterestRepository>();
+            _ = services.AddTransient<IRepository<ApplicationUserDTO>, EmployeeRepository>();
+            _ = services.AddTransient<IRepository<DepartmentDTO>, DepartmentRepository>();
 
             return services;
         }

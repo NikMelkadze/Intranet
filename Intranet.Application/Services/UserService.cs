@@ -7,15 +7,16 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Intranet.Application.User.GetUser;
 
 namespace Intranet.Application.Services
 {
     public class UserService : IUserService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUserDTO> _userManager;
         private readonly IConfiguration _configuration;
 
-        public UserService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        public UserService(UserManager<ApplicationUserDTO> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -55,11 +56,16 @@ namespace Intranet.Application.Services
 
             }
 
-            ApplicationUser user = new()
+            ApplicationUserDTO user = new()
             {
                 Email = request.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = request.Email
+                UserName = request.Email,
+                DateOfBirth = request.DateOfBirth,
+                DepartmentId = request.DepartmentId,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Position = request.Position
             };
             var result = await _userManager.CreateAsync(user, request.Password);
 

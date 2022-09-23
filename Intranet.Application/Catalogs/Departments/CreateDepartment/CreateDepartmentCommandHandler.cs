@@ -8,31 +8,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Intranet.Application.Catalogs.Interests.DeleteInterest
+namespace Intranet.Application.Catalogs.Departments.CreateDepartment
 {
-    public class DeleteInterestCommandHandler : IRequestHandler<DeleteInterestCommand, CommandResponse>
+    public class CreateDepartmentCommandHandler : IRequestHandler<CreateDepartmentCommand, CommandResponse>
     {
-        private readonly IRepository<InterestDTO> _repository;
+        private readonly IRepository<DepartmentDTO> _repository;
 
-        public DeleteInterestCommandHandler(IRepository<InterestDTO> repository)
+        public CreateDepartmentCommandHandler(IRepository<DepartmentDTO> repository)
         {
             _repository = repository;
         }
 
-        public async Task<CommandResponse> Handle(DeleteInterestCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse> Handle(CreateDepartmentCommand request, CancellationToken cancellationToken)
         {
-
             try
             {
-                await _repository.DeleteById(request.Id);
-
+                var result = await _repository.Create(new DepartmentDTO { Name = request.Name });
             }
             catch (Exception ex)
             {
-
                 return new CommandResponse { Messsage = "Failed" };
             }
-
             return new CommandResponse { Messsage = "Success" };
         }
     }

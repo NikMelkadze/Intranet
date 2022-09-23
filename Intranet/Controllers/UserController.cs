@@ -1,4 +1,5 @@
-﻿using Intranet.Application.User.Login;
+﻿using Intranet.Application.User.GetUser;
+using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,6 @@ namespace Intranet.Controllers
         {
         }
 
-
         [HttpPost("login")]
         public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginQuery model)
         {
@@ -23,7 +23,18 @@ namespace Intranet.Controllers
         [HttpPost("Registration")]
         public async Task<ActionResult<RegisterResponse>> Register([FromBody] RegisterQuery model)
         {
-            return await Mediator.Send(new RegisterQuery { Email = model.Email, Password = model.Password });
+            return await Mediator.Send(new RegisterQuery
+            {
+                Email = model.Email,
+                Password = model.Password,
+                DateOfBirth = model.DateOfBirth,
+                DepartmentId = model.DepartmentId,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                Position = model.Position,
+                UserRole = model.UserRole,
+            });
         }
 
     }

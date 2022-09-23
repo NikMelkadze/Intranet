@@ -6,9 +6,9 @@ namespace Intranet.Application.Catalogs.Interests.GetInterests
 {
     internal class GetInterestsQueryHandler : IRequestHandler<GetInterestsQuery, IterestsVM>
     {
-        private readonly IRepository<Interest> _repository;
+        private readonly IRepository<InterestDTO> _repository;
 
-        public GetInterestsQueryHandler(IRepository<Interest> repository)
+        public GetInterestsQueryHandler(IRepository<InterestDTO> repository)
         {
             _repository = repository;
         }
@@ -21,7 +21,7 @@ namespace Intranet.Application.Catalogs.Interests.GetInterests
 
             var response = new IterestsVM
             {
-                Interests = result.Select(x => new Interest
+                Interests = result.Select(x => new InterestDTO
                 {
                     Id = x.Id,
                     Title = x.Title
