@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Intranet.Application\Intranet.Application.csproj" />
+    <ProjectReference Include="..\Intranet.Infrastructure\Intranet.Infrastructure.csproj" />
     <ProjectReference Include="..\Intranet.Persistance\Intranet.Persistance.csproj" />
   </ItemGroup>
 

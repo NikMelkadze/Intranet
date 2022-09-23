@@ -1,5 +1,6 @@
 using Intranet.Persistance;
 using Intranet.Application.Common.Extensions;
+using Intranet.Infrastructure.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,9 +34,9 @@ app.UseCors(x => x
            .AllowAnyHeader());
 
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 

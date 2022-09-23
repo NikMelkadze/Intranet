@@ -18,7 +18,7 @@ namespace Intranet.Controllers
             return await Mediator.Send(new GetEmployeesQuery { });
         }
 
-        [HttpGet("Employee/{Id}")]
+        [HttpGet("Employee/{id}")]
         public async Task<ActionResult<GetEmployeeResponse>> GetEmployee(int id)
         {
             return await Mediator.Send(new GetEmployeeQuery { Id = id });
