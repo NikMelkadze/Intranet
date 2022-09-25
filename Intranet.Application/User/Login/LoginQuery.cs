@@ -10,8 +10,12 @@ namespace Intranet.Application.User.Login
 
     public class LoginResponse
     {
-        public string? Status { get; set; }
-        public string? Token { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int UserId { get; set; }
         public DateTime TokenExpiration { get; set; }
+        public string? Token { get; set; }
+
     }
 }

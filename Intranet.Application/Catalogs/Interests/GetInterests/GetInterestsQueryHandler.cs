@@ -18,6 +18,10 @@ namespace Intranet.Application.Catalogs.Interests.GetInterests
 
             var result = await _repository.Get();
 
+            if (result == null)
+            {
+                return new IterestsVM { };
+            }
 
             var response = new IterestsVM
             {

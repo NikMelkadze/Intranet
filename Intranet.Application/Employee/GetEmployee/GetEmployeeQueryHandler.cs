@@ -21,28 +21,26 @@ namespace Intranet.Application.Employee.GetEmployee
         public async Task<GetEmployeeResponse> Handle(GetEmployeeQuery request, CancellationToken cancellationToken)
         {
             GetEmployeeResponse result;
-            try
-            {
-                var employee = await _userService.GetById(request.Id);
-                 result = new GetEmployeeResponse
-                {
-                    Email = employee.Email,
-                    FirstName = employee.FirstName,
-                    LastName = employee.LastName,
-                    PhoneNumber = employee.PhoneNumber,
-                    Department = employee.Department.Name,
-                    UserId = employee.UserId,
-                    DateOfBirth = employee.DateOfBirth,
-                    Position = employee.Position,
-                };
-            }
-            catch (NullReferenceException ex)
-            {
+            var employee = await _userService.GetById(request.Id);
 
-                throw new NullReferenceException("Employee with this Id does not exist");
+            if (employee == null)
+            {
+                throw new KeyNotFoundException("Employee with this Id does not exist");
             }
 
+            result = new GetEmployeeResponse
+            {
+                Email = employee.Email,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                PhoneNumber = employee.PhoneNumber,
+                Department = employee.Department.Name,
+                UserId = employee.UserId,
+                DateOfBirth = employee.DateOfBirth,
+                Position = employee.Position,
+            };
             return result;
+
         }
     }
 }

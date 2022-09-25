@@ -17,29 +17,25 @@ namespace Intranet.Application.User.GetUser
         }
         public async Task<GetEmployeesResponse> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {
-            GetEmployeesResponse result;
-            try
+            var users = await _userService.Get();
+            if (users == null)
             {
-                var users = await _userService.Get();
-                result = new GetEmployeesResponse
+                return null;
+            }
+            var result = new GetEmployeesResponse
+            {
+                Employees = users.Select(x => new GetEmployeeResponse
                 {
-                    Employees = users.Select(x => new GetEmployeeResponse
-                    {
-                        Email = x.Email,
-                        FirstName = x.FirstName,
-                        LastName = x.LastName,
-                        PhoneNumber = x.PhoneNumber,
-                        Department = x.Department.Name,
-                        UserId = x.UserId,
-                        DateOfBirth = x.DateOfBirth,
-                        Position = x.Position,
-                    })
-                };
-            }
-            catch (NullReferenceException ex)
-            {
-                throw new NullReferenceException("Employees do not exist");
-            }
+                    Email = x.Email,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    PhoneNumber = x.PhoneNumber,
+                    Department = x.Department.Name,
+                    UserId = x.UserId,
+                    DateOfBirth = x.DateOfBirth,
+                    Position = x.Position,
+                })
+            };
             return result;
         }
     }

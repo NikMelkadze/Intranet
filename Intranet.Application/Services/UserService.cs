@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Intranet.Application.User.GetUser;
+using Intranet.Infrastructure.Middlewares;
 
 namespace Intranet.Application.Services
 {
@@ -25,7 +26,11 @@ namespace Intranet.Application.Services
         public async Task<LoginResponse> Login(LoginQuery request)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
-            if (user != null && await _userManager.CheckPasswordAsync(user, request.Password))
+            if (user == null)
+            {
+                throw new AppException("User with this Email doesn't exist");
+            }
+            if (await _userManager.CheckPasswordAsync(user, request.Password))
             {
 
                 var authClaims = new List<Claim>
@@ -39,12 +44,15 @@ namespace Intranet.Application.Services
 
                 return new LoginResponse
                 {
-                    Status = "Success",
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    TokenExpiration = token.ValidTo
+                    TokenExpiration = token.ValidTo,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserId = user.UserId,
                 };
             }
-            throw new UnauthorizedAccessException("useer is not authorized");
+            throw new AppException("Email or password is incorrect");
         }
 
         public async Task<RegisterResponse> Registration(RegisterQuery request)
@@ -52,8 +60,7 @@ namespace Intranet.Application.Services
             var existUser = await _userManager.FindByEmailAsync(request.Email);
             if (existUser != null)
             {
-                throw new ApplicationException("User already Exists");
-
+                throw new AppException("User with this Email already Exists");
             }
 
             ApplicationUserDTO user = new()
