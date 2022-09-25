@@ -6,9 +6,8 @@ namespace Intranet.Application.User.Login
     {
         public LoginQueryValidator()
         {
-            _ = RuleFor(x => x.Email).NotNull().WithMessage("Emailis required");
-            _ = RuleFor(x => x.Password).NotNull().WithMessage("Password Name is required");
-
+            _ = RuleFor(x => x.Email).NotNull().WithMessage("Email is required");
+            _ = RuleFor(x => x.Password).NotNull().WithMessage("Password is required");
         }
     }
 }

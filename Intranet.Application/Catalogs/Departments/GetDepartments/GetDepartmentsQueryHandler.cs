@@ -21,24 +21,21 @@ namespace Intranet.Application.Catalogs.Departments.GetDepartments
 
         public async Task<GetDepartmentsResponse> Handle(GetDepartmentsQuery request, CancellationToken cancellationToken)
         {
-            GetDepartmentsResponse result;
-            try
-            {
-                var departments = await _repository.Get();
-                result = new GetDepartmentsResponse
-                {
-                    Departments = departments.Select(x => new DepartmentDTO
-                    {
-                        Id = x.Id,
-                        Name = x.Name
-                    })
-                };
 
-            }
-            catch (Exception ex)
+            var departments = await _repository.Get();
+            if (departments == null)
             {
-                throw;
+                return new GetDepartmentsResponse { };
             }
+
+            var result = new GetDepartmentsResponse
+            {
+                Departments = departments.Select(x => new DepartmentDTO
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+            };
             return result;
         }
     }

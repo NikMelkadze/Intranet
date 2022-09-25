@@ -38,6 +38,11 @@ namespace Intranet.Infrastructure.Middlewares
                     case KeyNotFoundException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
+                        //not authorized error
+                        break;
+                    case UnauthorizedAccessException e:
+                        // not found error
+                        response.StatusCode = (int)HttpStatusCode.Forbidden;
                         break;
                     default:
                         // unhandled error
