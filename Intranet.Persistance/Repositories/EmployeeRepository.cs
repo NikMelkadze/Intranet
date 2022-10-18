@@ -40,6 +40,11 @@ namespace Intranet.Persistance.Repositories
             return employee;
         }
 
+        public Task<IEnumerable<ApplicationUserDTO>> GetByUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ApplicationUserDTO> Update(ApplicationUserDTO model)
         {
             throw new NotImplementedException();

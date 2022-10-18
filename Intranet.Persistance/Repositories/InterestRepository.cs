@@ -36,6 +36,11 @@ namespace Intranet.Persistance.Services
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<InterestDTO>> GetByUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<InterestDTO> Update(InterestDTO model)
         {
             throw new NotImplementedException();

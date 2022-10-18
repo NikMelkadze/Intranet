@@ -2,6 +2,7 @@
 using Intranet.Application.Catalogs.Interests;
 using Intranet.Application.Catalogs.Interests.DeleteInterest;
 using Intranet.Application.Catalogs.Interests.GetInterests;
+using Intranet.Application.Employee.AddEmployeeInterests;
 using Intranet.Application.Services;
 using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
@@ -46,7 +47,7 @@ namespace Intranet.Application.Common.Extensions
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "JWTToken_Auth_API",
+                    Title = "Intranet API",
                     Version = "v1"
                 });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
@@ -75,7 +76,7 @@ namespace Intranet.Application.Common.Extensions
 
             //MediatR
             _ = services.AddMediatR(typeof(LoginQueryHandler).Assembly, typeof(RegisterQueryHandler).Assembly, typeof(CreateInterestCommandHandler).Assembly,
-                typeof(GetInterestsQueryHandler).Assembly, typeof(DeleteInterestCommandHandler).Assembly);
+                typeof(GetInterestsQueryHandler).Assembly, typeof(DeleteInterestCommandHandler).Assembly, typeof(AddEmployeeInterestCommandHandler).Assembly);
 
             //FluentVladiation
             _ = services.AddValidatorsFromAssembly(typeof(LoginQuery).Assembly);

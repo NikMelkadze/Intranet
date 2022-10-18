@@ -12,6 +12,7 @@ namespace Intranet.Persistance.Models
         public DepartmentDTO Department { get; set; }
         public int DepartmentId { get; set; }
 
+        public ICollection<EmployeeInterest> EmployeeInterest { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
