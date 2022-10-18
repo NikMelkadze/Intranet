@@ -42,6 +42,11 @@ namespace Intranet.Persistance.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<DepartmentDTO>> GetByUser(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<DepartmentDTO> Update(DepartmentDTO model)
         {
             throw new NotImplementedException();

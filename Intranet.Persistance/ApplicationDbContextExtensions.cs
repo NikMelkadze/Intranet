@@ -24,6 +24,7 @@ namespace Intranet.Persistance
             _ = services.AddTransient<IRepository<InterestDTO>, InterestRepository>();
             _ = services.AddTransient<IRepository<ApplicationUserDTO>, EmployeeRepository>();
             _ = services.AddTransient<IRepository<DepartmentDTO>, DepartmentRepository>();
+            _ = services.AddTransient<IRepository<EmployeeInterest>, EmployeeInterestRepository>();
 
             return services;
         }
