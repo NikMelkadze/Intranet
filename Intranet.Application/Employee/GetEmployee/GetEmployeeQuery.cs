@@ -22,6 +22,9 @@ namespace Intranet.Application.Employee.GetEmployee
         public int UserId { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Position { get; set; }
+        public string ProfileInstagram { get; set; }
+        public string ProfileFacebook { get; set; }
+        public string ProfileLinkedin { get; set; }
 
     }
 }

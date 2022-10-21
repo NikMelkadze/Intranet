@@ -34,6 +34,9 @@ namespace Intranet.Controllers
                 PhoneNumber = model.PhoneNumber,
                 Position = model.Position,
                 UserRole = model.UserRole,
+                ProfileFacebook = model.ProfileFacebook,
+                ProfileInstagram = model.ProfileInstagram,
+                ProfileLinkedin = model.ProfileLinkedin,
             });
         }
 

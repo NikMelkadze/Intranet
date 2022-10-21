@@ -17,6 +17,9 @@ namespace Intranet.Application.User.Registration
         public string PhoneNumber { get; set; }
         public string Position { get; set; }
         public int DepartmentId { get; set; }
+        public string ProfileInstagram { get; set; }
+        public string ProfileFacebook { get; set; }
+        public string ProfileLinkedin { get; set; }
         public UserRoles UserRole { get; set; }
     }
 

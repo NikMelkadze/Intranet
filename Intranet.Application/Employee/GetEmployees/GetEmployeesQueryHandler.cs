@@ -34,6 +34,9 @@ namespace Intranet.Application.User.GetUser
                     UserId = x.UserId,
                     DateOfBirth = x.DateOfBirth,
                     Position = x.Position,
+                    ProfileLinkedin = x.ProfileLinkedin,
+                    ProfileFacebook = x.ProfileFacebook,
+                    ProfileInstagram = x.ProfileInstagram
                 })
             };
             return result;
