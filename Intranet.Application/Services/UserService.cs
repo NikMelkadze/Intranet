@@ -9,6 +9,8 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Intranet.Application.User.GetUser;
 using Intranet.Infrastructure.Middlewares;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 
 namespace Intranet.Application.Services
 {
@@ -106,5 +108,4 @@ namespace Intranet.Application.Services
             return token;
         }
     }
-
 }

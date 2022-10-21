@@ -14,6 +14,7 @@ namespace Intranet.Persistance.Models
         public string ProfileInstagram { get; set; }
         public string ProfileFacebook { get; set; }
         public string ProfileLinkedin { get; set; }
+        public byte[] Image { get; set; }
 
         public ICollection<EmployeeInterest> EmployeeInterest { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
