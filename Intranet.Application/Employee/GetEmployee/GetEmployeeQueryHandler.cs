@@ -38,6 +38,9 @@ namespace Intranet.Application.Employee.GetEmployee
                 UserId = employee.UserId,
                 DateOfBirth = employee.DateOfBirth,
                 Position = employee.Position,
+                ProfileFacebook = employee.ProfileFacebook,
+                ProfileInstagram = employee.ProfileInstagram,
+                ProfileLinkedin = employee.ProfileLinkedin,
             };
             return result;
 
