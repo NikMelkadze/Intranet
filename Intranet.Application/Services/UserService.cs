@@ -70,9 +70,13 @@ namespace Intranet.Application.Services
                 UserName = request.Email,
                 DateOfBirth = request.DateOfBirth,
                 DepartmentId = request.DepartmentId,
+                PhoneNumber = request.PhoneNumber,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                Position = request.Position
+                Position = request.Position,
+                ProfileFacebook = request.ProfileFacebook,
+                ProfileInstagram = request.ProfileInstagram,
+                ProfileLinkedin = request.ProfileLinkedin
             };
             var result = await _userManager.CreateAsync(user, request.Password);
 
