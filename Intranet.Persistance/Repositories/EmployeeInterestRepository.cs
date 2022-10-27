@@ -24,9 +24,11 @@ namespace Intranet.Persistance.Repositories
             return model;
         }
 
-        public Task DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var item = await _context.EmployeeInterest.SingleOrDefaultAsync(x => x.Id == id);
+            _context.EmployeeInterest.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         public Task<IEnumerable<EmployeeInterest>> Get()

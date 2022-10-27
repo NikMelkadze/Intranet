@@ -43,26 +43,5 @@ namespace Intranet.Controllers
                 ProfileLinkedin = model.ProfileLinkedin,
             });
         }
-
-        [HttpPost("Image")]
-        public async Task<ActionResult> UploadImage(IFormFile img, [FromHeader] string email)
-        {
-            var user = await _userManager.FindByEmailAsync(email);
-            using var dataStream = new MemoryStream();
-            await img.CopyToAsync(dataStream);
-            byte[] imageBytes = dataStream.ToArray();
-            user.Image = imageBytes;
-            await _userManager.UpdateAsync(user);
-            return Ok();
-        }
-        [HttpGet("ImageVM")]
-        public async Task<ActionResult> GetImage([FromHeader] string email)
-        {
-            var user = await _userManager.FindByEmailAsync(email);
-            var imgcode = user.Image;
-
-            return new FileContentResult(imgcode, "image/jpeg");
-
-        }
     }
 }
