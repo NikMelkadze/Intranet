@@ -18,6 +18,11 @@ namespace Intranet.Persistance.Services
             return model;
         }
 
+        public Task Delete(InterestDTO model)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteById(int id)
         {
             var item = await _context.Interests.SingleOrDefaultAsync(x => x.Id == id);

@@ -9,7 +9,6 @@ namespace Intranet.Persistance.Models
 {
     public class EmployeeInterest
     {
-        public int Id { get; set; }
         public int InterestId { get; set; }
         public InterestDTO Interest { get; set; }
         public ApplicationUserDTO Employee { get; set; }

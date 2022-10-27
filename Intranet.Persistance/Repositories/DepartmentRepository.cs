@@ -24,6 +24,12 @@ namespace Intranet.Persistance.Repositories
             await _context.SaveChangesAsync();
             return model;
         }
+
+        public Task Delete(DepartmentDTO model)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteById(int id)
         {
             var item = await _context.Departments.SingleOrDefaultAsync(x => x.Id == id);
