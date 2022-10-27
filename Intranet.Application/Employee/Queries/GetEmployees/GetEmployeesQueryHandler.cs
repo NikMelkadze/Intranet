@@ -3,6 +3,9 @@ using Intranet.Application.Services;
 using Intranet.Persistance.Contracts;
 using Intranet.Persistance.Models;
 using MediatR;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.Extensions.Configuration;
 using System.Net.Mail;
 
 namespace Intranet.Application.User.GetUser
@@ -36,7 +39,9 @@ namespace Intranet.Application.User.GetUser
                     Position = x.Position,
                     ProfileLinkedin = x.ProfileLinkedin,
                     ProfileFacebook = x.ProfileFacebook,
-                    ProfileInstagram = x.ProfileInstagram
+                    ProfileInstagram = x.ProfileInstagram,
+                    ImgUrl = $"{request.HttpContext.Request.Host.Value}/Employee/Image/{x.UserId}"
+
                 })
             };
             return result;

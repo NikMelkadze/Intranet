@@ -1,5 +1,6 @@
 ﻿using Intranet.Persistance.Models;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Intranet.Application.Employee.GetEmployee
     public class GetEmployeeQuery : IRequest<GetEmployeeResponse>
     {
         public int Id { get; set; }
+        public HttpContext HttpContext { get; set; }
     }
     public class GetEmployeeResponse
     {
@@ -25,6 +27,7 @@ namespace Intranet.Application.Employee.GetEmployee
         public string ProfileInstagram { get; set; }
         public string ProfileFacebook { get; set; }
         public string ProfileLinkedin { get; set; }
+        public string ImgUrl { get; set; }
 
     }
 }

@@ -41,6 +41,7 @@ namespace Intranet.Application.Employee.GetEmployee
                 ProfileFacebook = employee.ProfileFacebook,
                 ProfileInstagram = employee.ProfileInstagram,
                 ProfileLinkedin = employee.ProfileLinkedin,
+                ImgUrl = $"{request.HttpContext.Request.Host.Value}/Employee/Image/{employee.UserId}"
             };
             return result;
 

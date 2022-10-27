@@ -25,13 +25,13 @@ namespace Intranet.Controllers
         [HttpGet("EmployeeList")]
         public async Task<ActionResult<GetEmployeesResponse>> GetEmployees()
         {
-            return await Mediator.Send(new GetEmployeesQuery { });
+            return await Mediator.Send(new GetEmployeesQuery { HttpContext = HttpContext });
         }
 
         [HttpGet("Employee/{userId}")]
         public async Task<ActionResult<GetEmployeeResponse>> GetEmployee(int userId)
         {
-            return await Mediator.Send(new GetEmployeeQuery { Id = userId });
+            return await Mediator.Send(new GetEmployeeQuery { Id = userId, HttpContext = HttpContext });
         }
 
         [HttpPut("Employee/{userId}")]
