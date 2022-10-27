@@ -143,7 +143,7 @@ namespace Intranet.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("Intranet.Persistance.Models.EmployeeInterest", b =>
@@ -154,14 +154,11 @@ namespace Intranet.Persistance.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.HasKey("InterestId", "EmployeeId");
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeInterest");
+                    b.ToTable("EmployeeInterest", (string)null);
                 });
 
             modelBuilder.Entity("Intranet.Persistance.Models.InterestDTO", b =>
@@ -178,7 +175,7 @@ namespace Intranet.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Interests");
+                    b.ToTable("Interests", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

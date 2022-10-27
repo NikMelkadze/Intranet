@@ -28,7 +28,11 @@ namespace Intranet.Application.Employee.Commands.DeleteEmployeeInterest
             var userbyUserId = await _userService.GetById(request.UserId);
             CurrentUserValidation.CheckCurrentUser(request.HttpUser, userbyUserId);
 
-            await _employeeInterestService.DeleteById(request.EmployeeInterestId);
+            await _employeeInterestService.Delete(new EmployeeInterest
+            {
+                EmployeeId = request.UserId,
+                InterestId = request.InterestId
+            });
 
             return new CommandResponse
             {

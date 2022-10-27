@@ -12,12 +12,12 @@ namespace Intranet.Application.Employee.Commands.DeleteEmployeeInterest
     public class DeleteEmployeeInterestQuery : IRequest<CommandResponse>
     {
         public int UserId { get; set; }
-        public int EmployeeInterestId { get; set; }
+        public int InterestId { get; set; }
         public HttpContext HttpUser { get; set; }
 
     }
     public class DeleteEmployeeInterestRequest
     {
-        public int EmployeeInterestId { get; set; }
+        public int InterestId { get; set; }
     }
 }

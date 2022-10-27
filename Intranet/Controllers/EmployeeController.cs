@@ -65,7 +65,7 @@ namespace Intranet.Controllers
         [HttpDelete("EmployeeInterest/{userId}")]
         public async Task<CommandResponse> DeleteEmployeeInterest([FromRoute] int userId, [FromBody] DeleteEmployeeInterestRequest model)
         {
-            return await Mediator.Send(new DeleteEmployeeInterestQuery { EmployeeInterestId = model.EmployeeInterestId, UserId = userId, HttpUser = HttpContext });
+            return await Mediator.Send(new DeleteEmployeeInterestQuery { InterestId = model.InterestId, UserId = userId, HttpUser = HttpContext });
         }
         #endregion
 

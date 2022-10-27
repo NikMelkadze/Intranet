@@ -12,6 +12,7 @@ namespace Intranet.Persistance.Contracts
         Task<IEnumerable<T>> Get();
         Task<T> Update(T model);
         Task DeleteById(int id);
+        Task Delete(T model);
         Task<T> Create(T model);
         Task<IEnumerable<T>> GetByUser(int id);
     }

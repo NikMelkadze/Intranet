@@ -23,6 +23,11 @@ namespace Intranet.Persistance.Repositories
             throw new NotImplementedException();
         }
 
+        public Task Delete(ApplicationUserDTO model)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task DeleteById(int id)
         {
             throw new NotImplementedException();
