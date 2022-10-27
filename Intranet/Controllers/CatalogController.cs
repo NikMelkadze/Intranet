@@ -16,7 +16,7 @@ namespace Intranet.Controllers
         {
 
         }
-
+        #region Interest
         [HttpPost("Interest")]
         public async Task<CommandResponse> CreateInterest([FromBody] CreateInterestCommand model)
         {
@@ -28,13 +28,15 @@ namespace Intranet.Controllers
         {
             return await Mediator.Send(new GetInterestsQuery { });
         }
-    
+
         [HttpDelete("Interest{id}")]
         public async Task<CommandResponse> DeleteInterest(int id)
         {
             return await Mediator.Send(new DeleteInterestCommand { Id = id });
         }
 
+        #endregion
+        #region Department
         [HttpGet("Department")]
         public async Task<GetDepartmentsResponse> GetDepartments()
         {
@@ -46,5 +48,6 @@ namespace Intranet.Controllers
         {
             return await Mediator.Send(new CreateDepartmentCommand { Name = model.Name });
         }
+        #endregion
     }
 }

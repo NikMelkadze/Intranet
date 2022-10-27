@@ -50,10 +50,10 @@ namespace Intranet.Controllers
         #endregion
 
         #region EmployeeInterest
-        [HttpPost("EmployeeInterest")]
-        public async Task<CommandResponse> AddEmployeeInterest([FromBody] AddEmployeeInterestCommand model)
+        [HttpPost("EmployeeInterest/{userId}")]
+        public async Task<CommandResponse> AddEmployeeInterest([FromBody] AddEmployeeInterestRequest model, [FromRoute] int userId)
         {
-            return await Mediator.Send(new AddEmployeeInterestCommand { InterestId = model.InterestId, UserId = model.UserId });
+            return await Mediator.Send(new AddEmployeeInterestCommand { InterestId = model.InterestId, UserId = userId, HttpUser = HttpContext });
         }
 
         [HttpGet("EmployeeInterest/{userId}")]

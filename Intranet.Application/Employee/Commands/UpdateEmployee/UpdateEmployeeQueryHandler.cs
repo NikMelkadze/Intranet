@@ -1,33 +1,25 @@
-﻿using Intranet.Application.Common.Halpers;
-using Intranet.Application.Common.Models;
-using Intranet.Infrastructure.Middlewares;
-using Intranet.Persistance.Contracts;
+﻿using Intranet.Application.Common.Models;
+using Intranet.Application.Services;
 using Intranet.Persistance.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intranet.Application.Employee.Commands.UpdateEmployee
 {
     public class UpdateEmployeeQueryHandler : IRequestHandler<UpdateEmployeeQuery, CommandResponse>
     {
         private readonly UserManager<ApplicationUserDTO> _userManager;
-        private readonly IRepository<ApplicationUserDTO> _userService;
-        public UpdateEmployeeQueryHandler(UserManager<ApplicationUserDTO> userManager, IRepository<ApplicationUserDTO> userService)
+        private readonly IUserValidationService _userValidationService;
+        public UpdateEmployeeQueryHandler(UserManager<ApplicationUserDTO> userManager, IUserValidationService userValidationService)
         {
             _userManager = userManager;
-            _userService = userService;
+            _userValidationService = userValidationService;
         }
 
         public async Task<CommandResponse> Handle(UpdateEmployeeQuery request, CancellationToken cancellationToken)
         {
-            var userbyUserId = await _userService.GetById(request.UserId);
-            CurrentUserValidation.CheckCurrentUser(request.HttpUser, userbyUserId);
-            var user = await _userManager.FindByIdAsync(userbyUserId.Id);
+            var id = await _userValidationService.CheckCurrentUserOperationReturnId(request.HttpUser, request.UserId);
+            var user = await _userManager.FindByIdAsync(id);
 
             user.PhoneNumber = request.PhoneNumber ?? user.PhoneNumber;
             user.ProfileInstagram = request.ProfileInstagram ?? user.ProfileInstagram;

@@ -1,5 +1,5 @@
-﻿using Intranet.Application.Common.Halpers;
-using Intranet.Application.Common.Models;
+﻿using Intranet.Application.Common.Models;
+using Intranet.Application.Services;
 using Intranet.Persistance.Contracts;
 using Intranet.Persistance.Models;
 using MediatR;
@@ -14,20 +14,18 @@ namespace Intranet.Application.Employee.Commands.DeleteEmployeeInterest
 {
     public class DeleteEmployeeInterestQueryHandler : IRequestHandler<DeleteEmployeeInterestQuery, CommandResponse>
     {
-        private readonly IRepository<ApplicationUserDTO> _userService;
         private readonly IRepository<EmployeeInterest> _employeeInterestService;
-        public DeleteEmployeeInterestQueryHandler(IRepository<ApplicationUserDTO> userService,
-            IRepository<EmployeeInterest> employeeInterestService)
+        private readonly IUserValidationService _userValidationService;
+        public DeleteEmployeeInterestQueryHandler(
+            IRepository<EmployeeInterest> employeeInterestService, IUserValidationService userValidationService)
         {
-            _userService = userService;
             _employeeInterestService = employeeInterestService;
+            _userValidationService = userValidationService;
         }
 
         public async Task<CommandResponse> Handle(DeleteEmployeeInterestQuery request, CancellationToken cancellationToken)
         {
-            var userbyUserId = await _userService.GetById(request.UserId);
-            CurrentUserValidation.CheckCurrentUser(request.HttpUser, userbyUserId);
-
+            await _userValidationService.CheckCurrentUserOperation(request.HttpUser, request.UserId);
             await _employeeInterestService.Delete(new EmployeeInterest
             {
                 EmployeeId = request.UserId,
