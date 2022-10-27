@@ -25,7 +25,7 @@ namespace Intranet.Application.Catalogs.Interests.GetInterests
 
             var response = new IterestsVM
             {
-                Interests = result.Select(x => new InterestDTO
+                Interests = result.Select(x => new Iterest
                 {
                     Id = x.Id,
                     Title = x.Title

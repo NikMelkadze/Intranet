@@ -1,17 +1,21 @@
 ﻿using Intranet.Application.User.GetUser;
 using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
+using Intranet.Persistance.Models;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Intranet.Controllers
 {
     [Route("/User")]
     public class UserController : ApiControllerBase
     {
-
-        public UserController(IMediator mediator) : base(mediator)
+        private readonly UserManager<ApplicationUserDTO> _userManager;
+        public UserController(IMediator mediator, UserManager<ApplicationUserDTO> userManager) : base(mediator)
         {
+            _userManager = userManager;
         }
 
         [HttpPost("login")]
@@ -39,6 +43,5 @@ namespace Intranet.Controllers
                 ProfileLinkedin = model.ProfileLinkedin,
             });
         }
-
     }
 }

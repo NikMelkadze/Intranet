@@ -14,7 +14,12 @@ namespace Intranet.Application.Catalogs.Interests.GetInterests
     }
     public class IterestsVM
     {
-        public IEnumerable<InterestDTO> Interests { get; set; }
+        public IEnumerable<Iterest> Interests { get; set; }
     }
 
+    public class Iterest
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+    }
 }

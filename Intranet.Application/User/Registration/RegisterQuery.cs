@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace Intranet.Application.User.Registration
@@ -20,6 +21,7 @@ namespace Intranet.Application.User.Registration
         public string ProfileInstagram { get; set; }
         public string ProfileFacebook { get; set; }
         public string ProfileLinkedin { get; set; }
+        public IFormFile ImageFile { get; set; }
         public UserRoles UserRole { get; set; }
     }
 
