@@ -15,7 +15,11 @@ namespace Intranet.Application.Employee.GetEmployeeInterests
 
     public class GetEmployeeInterestsVM
     {
-        public List<string> EmployeeInterest { get; set; }
+        public List<GetEmployeeInterests> EmployeeInterests { get; set; }
     }
-
+    public class GetEmployeeInterests
+    {
+        public int InterestId { get; set; }
+        public string Title { get; set; }
+    }
 }

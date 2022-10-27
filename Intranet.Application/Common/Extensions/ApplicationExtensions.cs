@@ -83,6 +83,7 @@ namespace Intranet.Application.Common.Extensions
 
             //Services
             _ = services.AddTransient<IUserService, UserService>();
+            _ = services.AddTransient<IUserValidationService, UserValidationService>();
 
             return services;
         }

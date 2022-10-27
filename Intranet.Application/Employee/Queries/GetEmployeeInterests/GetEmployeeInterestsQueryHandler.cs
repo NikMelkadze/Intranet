@@ -29,10 +29,13 @@ namespace Intranet.Application.Employee.GetEmployeeInterests
                 return new GetEmployeeInterestsVM { };
             }
 
-
             var result = new GetEmployeeInterestsVM
             {
-                EmployeeInterest = response.Select(x => x.Interest.Title).ToList(),
+                EmployeeInterests = response.Select(x => new GetEmployeeInterests
+                {
+                    InterestId = x.InterestId,
+                    Title = x.Interest.Title,
+                }).ToList()
             };
             return result;
         }
