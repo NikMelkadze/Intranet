@@ -11,6 +11,7 @@ using Intranet.Application.User.GetUser;
 using Intranet.Infrastructure.Middlewares;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
+using Intranet.Application.User;
 
 namespace Intranet.Application.Services
 {
@@ -18,11 +19,13 @@ namespace Intranet.Application.Services
     {
         private readonly UserManager<ApplicationUserDTO> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserService(UserManager<ApplicationUserDTO> userManager, IConfiguration configuration)
+        public UserService(UserManager<ApplicationUserDTO> userManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _roleManager = roleManager;
         }
 
         public async Task<LoginResponse> Login(LoginQuery request)
@@ -34,6 +37,7 @@ namespace Intranet.Application.Services
             }
             if (await _userManager.CheckPasswordAsync(user, request.loginData.Password))
             {
+                var userRoles = await _userManager.GetRolesAsync(user);
 
                 var authClaims = new List<Claim>
                 {
@@ -41,6 +45,10 @@ namespace Intranet.Application.Services
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
+                foreach (var userRole in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
 
                 var token = GetToken(authClaims);
 
@@ -60,6 +68,7 @@ namespace Intranet.Application.Services
 
         public async Task<RegisterResponse> Registration(RegisterQuery request)
         {
+            IdentityResult result;
             var existUser = await _userManager.FindByEmailAsync(request.Email);
             if (existUser != null)
             {
@@ -79,13 +88,38 @@ namespace Intranet.Application.Services
                 Position = request.Position,
                 ProfileFacebook = request.ProfileFacebook,
                 ProfileInstagram = request.ProfileInstagram,
-                ProfileLinkedin = request.ProfileLinkedin
+                ProfileLinkedin = request.ProfileLinkedin,
             };
-            var result = await _userManager.CreateAsync(user, request.Password);
+
+            try
+            {
+                result = await _userManager.CreateAsync(user, request.Password);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error");
+            }
 
             if (!result.Succeeded)
             {
-                throw new ApplicationException("Proccess was not copleted");
+                throw new AppException(result.Errors.First().Description);
+            }
+
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+            }
+            if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+
+            if (await _roleManager.RoleExistsAsync(UserRoles.Admin) && request.UserRole == UserRole.Admin)
+            {
+                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+            }
+            if (await _roleManager.RoleExistsAsync(UserRoles.User) && request.UserRole == UserRole.User)
+            {
+                await _userManager.AddToRoleAsync(user, UserRoles.User);
             }
 
             return new RegisterResponse

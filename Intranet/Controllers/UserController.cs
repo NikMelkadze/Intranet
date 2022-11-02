@@ -1,10 +1,13 @@
-﻿using Intranet.Application.User.GetUser;
+﻿using Intranet.Application.User;
+using Intranet.Application.User.GetUser;
 using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
 using Intranet.Persistance.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Net;
 
 namespace Intranet.Controllers
@@ -24,6 +27,7 @@ namespace Intranet.Controllers
             return await Mediator.Send(new LoginQuery { loginData = new LoginRequest { Email = model.Email, Password = model.Password }, HttpContext = HttpContext });
         }
 
+       // [Authorize(Roles = UserRoles.Admin)]
         [HttpPost("Registration")]
         public async Task<ActionResult<RegisterResponse>> Register([FromBody] RegisterQuery model)
         {

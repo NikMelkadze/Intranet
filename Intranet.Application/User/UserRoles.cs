@@ -1,8 +1,10 @@
-﻿namespace Intranet.Application.User
+﻿using Intranet.Application.User.Registration;
+
+namespace Intranet.Application.User
 {
-    public enum UserRoles
+    public static class UserRoles
     {
-        Admin,
-        Employee
+        public const string Admin = "Admin";
+        public const string User = "User";
     }
 }
