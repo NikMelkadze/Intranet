@@ -19,9 +19,9 @@ namespace Intranet.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginQuery model)
+        public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest model)
         {
-            return await Mediator.Send(new LoginQuery { Email = model.Email, Password = model.Password });
+            return await Mediator.Send(new LoginQuery { loginData = new LoginRequest { Email = model.Email, Password = model.Password }, HttpContext = HttpContext });
         }
 
         [HttpPost("Registration")]
