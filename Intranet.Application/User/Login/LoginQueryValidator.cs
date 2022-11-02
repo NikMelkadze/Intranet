@@ -2,7 +2,7 @@
 
 namespace Intranet.Application.User.Login
 {
-    public class LoginQueryValidator : AbstractValidator<LoginQuery>
+    public class LoginQueryValidator : AbstractValidator<LoginRequest>
     {
         public LoginQueryValidator()
         {

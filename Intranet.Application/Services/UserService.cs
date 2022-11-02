@@ -30,12 +30,12 @@ namespace Intranet.Application.Services
 
         public async Task<LoginResponse> Login(LoginQuery request)
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
+            var user = await _userManager.FindByEmailAsync(request.loginData.Email);
             if (user == null)
             {
                 throw new AppException("User with this Email doesn't exist");
             }
-            if (await _userManager.CheckPasswordAsync(user, request.Password))
+            if (await _userManager.CheckPasswordAsync(user, request.loginData.Password))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -60,6 +60,7 @@ namespace Intranet.Application.Services
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserId = user.UserId,
+                    ImgUrl = $"{request.HttpContext.Request.Host.Value}/Employee/Image/{user.UserId}"
                 };
             }
             throw new AppException("Email or password is incorrect");
