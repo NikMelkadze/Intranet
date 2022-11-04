@@ -14,7 +14,7 @@ namespace Intranet.Application.User.Login
 
         public async Task<LoginResponse> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
-            return await _userService.Login(request);
+            return await _userService.Login(request,cancellationToken);
         }
     }
 }

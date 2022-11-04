@@ -6,7 +6,7 @@ namespace Intranet.Application.Services
 {
     public interface IUserService
     {
-        public Task<RegisterResponse> Registration(RegisterQuery request);
-        public Task<LoginResponse> Login(LoginQuery request);
+        public Task<RegisterResponse> Registration(RegisterQuery request, CancellationToken cancellationToken);
+        public Task<LoginResponse> Login(LoginQuery request, CancellationToken cancellationToken);
     }
 }

@@ -21,7 +21,6 @@ namespace Intranet.Application.User.Registration
         public string ProfileInstagram { get; set; }
         public string ProfileFacebook { get; set; }
         public string ProfileLinkedin { get; set; }
-        public IFormFile? ImageFile { get; set; }
         public UserRole UserRole { get; set; }
     }
 

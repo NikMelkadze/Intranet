@@ -45,8 +45,6 @@ namespace Intranet.Persistance
                 LastName = "admin",
                 Position = "",
                 DepartmentId = 1,
-
-
             };
             PasswordHasher<ApplicationUserDTO> passwordHasher = new PasswordHasher<ApplicationUserDTO>();
             user.PasswordHash = passwordHasher.HashPassword(user, "Admin*123");
