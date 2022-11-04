@@ -12,6 +12,7 @@ using Intranet.Infrastructure.Middlewares;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Intranet.Application.User;
+using Intranet.Application.Common.Image;
 
 namespace Intranet.Application.Services
 {
@@ -28,7 +29,7 @@ namespace Intranet.Application.Services
             _roleManager = roleManager;
         }
 
-        public async Task<LoginResponse> Login(LoginQuery request)
+        public async Task<LoginResponse> Login(LoginQuery request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByEmailAsync(request.loginData.Email);
             if (user == null)
@@ -66,7 +67,7 @@ namespace Intranet.Application.Services
             throw new AppException("Email or password is incorrect");
         }
 
-        public async Task<RegisterResponse> Registration(RegisterQuery request)
+        public async Task<RegisterResponse> Registration(RegisterQuery request, CancellationToken cancellationToken)
         {
             IdentityResult result;
             var existUser = await _userManager.FindByEmailAsync(request.Email);
@@ -89,6 +90,7 @@ namespace Intranet.Application.Services
                 ProfileFacebook = request.ProfileFacebook,
                 ProfileInstagram = request.ProfileInstagram,
                 ProfileLinkedin = request.ProfileLinkedin,
+                Image = await ImageConvertor.ImageToByteArr(null, cancellationToken)
             };
 
             try

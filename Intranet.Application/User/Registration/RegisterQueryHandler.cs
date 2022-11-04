@@ -15,7 +15,7 @@ namespace Intranet.Application.User.Registration
         public async Task<RegisterResponse> Handle(RegisterQuery request, CancellationToken cancellationToken)
         {
 
-            return await _userService.Registration(request);
+            return await _userService.Registration(request,cancellationToken);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Intranet.Application.Common.Models;
+﻿using Intranet.Application.Common.Image;
+using Intranet.Application.Common.Models;
 using Intranet.Application.Services;
 using Intranet.Persistance.Models;
 using MediatR;
@@ -22,20 +23,16 @@ namespace Intranet.Application.Employee.UploadEmployeeImage
         {
             var id = await _userValidationService.CheckCurrentUserOperationReturnId(request.HttpUser, request.UserId);
             var user = await _userManager.FindByIdAsync(id);
-
+            var image = await ImageConvertor.ImageToByteArr(request.Image, cancellationToken);
             try
             {
-                using var dataStream = new MemoryStream();
-                await request.Image.CopyToAsync(dataStream);
-                byte[] imageBytes = dataStream.ToArray();
-                user.Image = imageBytes;
+                user.Image = image;
                 await _userManager.UpdateAsync(user);
             }
             catch (Exception)
             {
                 throw new Exception("Something went wrong");
             }
-
             return new CommandResponse
             {
                 Messsage = "Success"

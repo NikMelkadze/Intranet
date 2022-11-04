@@ -29,7 +29,6 @@ namespace Intranet.Application.Services
             {
                 throw new AppException("Wrong UserId");
             }
-
         }
 
         public async Task<string> CheckCurrentUserOperationReturnId(HttpContext currentUserContext, int userId)
