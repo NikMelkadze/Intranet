@@ -38,7 +38,7 @@ namespace Intranet.Persistance
             ApplicationUserDTO user = new ApplicationUserDTO()
             {
                 Id = "b74ddd14-6340-4840-95c2-db12554843e5",
-                UserId = 299999999,
+                UserId = 1,
                 NormalizedEmail = "admin@gmail.com",
                 Email = "admin@gmail.com",
                 FirstName = "admin",

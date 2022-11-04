@@ -13,25 +13,26 @@ namespace Intranet.Application.Common.Image
     {
         public static async Task<byte[]> ImageToByteArr(IFormFile? Image, CancellationToken cancellationToken)
         {
-            string defaultImagePath = Path.Combine(Directory.GetCurrentDirectory(), "Default.png");
-            IFormFile defaultImage = null;
+            var defaultImagePath = Path.GetFullPath(@"..\Intranet.Application\Common\Image\Default.png");
+
             byte[] imageBytes;
 
-            using (var stream = new FileStream(defaultImagePath, FileMode.Create))
+            if (Image == null)
             {
-                await defaultImage.CopyToAsync(stream, cancellationToken);
+                imageBytes = File.ReadAllBytes(defaultImagePath);
             }
-
-            var Img = Image ?? defaultImage;
-            try
+            else
             {
-                using var dataStream = new MemoryStream();
-                await Img.CopyToAsync(dataStream);
-                imageBytes = dataStream.ToArray();
-            }
-            catch (Exception)
-            {
-                throw new Exception("Something went wrong due to uploading image");
+                try
+                {
+                    using var dataStream = new MemoryStream();
+                    await Image.CopyToAsync(dataStream);
+                    imageBytes = dataStream.ToArray();
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Something went wrong due to uploading image");
+                }
             }
             return imageBytes;
         }
