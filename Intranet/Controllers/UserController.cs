@@ -27,7 +27,7 @@ namespace Intranet.Controllers
             return await Mediator.Send(new LoginQuery { loginData = new LoginRequest { Email = model.Email, Password = model.Password }, HttpContext = HttpContext });
         }
 
-       // [Authorize(Roles = UserRoles.Admin)]
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpPost("Registration")]
         public async Task<ActionResult<RegisterResponse>> Register([FromBody] RegisterQuery model)
         {

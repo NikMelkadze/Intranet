@@ -11,9 +11,9 @@ namespace Intranet.Persistance.Models
         public DateTime DateOfBirth { get; set; }
         public DepartmentDTO Department { get; set; }
         public int DepartmentId { get; set; }
-        public string ProfileInstagram { get; set; }
-        public string ProfileFacebook { get; set; }
-        public string ProfileLinkedin { get; set; }
+        public string? ProfileInstagram { get; set; }
+        public string? ProfileFacebook { get; set; }
+        public string? ProfileLinkedin { get; set; }
         public byte[]? Image { get; set; }
 
         public ICollection<EmployeeInterest> EmployeeInterest { get; set; }
