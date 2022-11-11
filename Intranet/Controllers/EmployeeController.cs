@@ -41,10 +41,14 @@ namespace Intranet.Controllers
             {
                 UserId = userId,
                 HttpUser = HttpContext,
-                PhoneNumber = employee.PhoneNumber,
-                ProfileFacebook = employee.ProfileFacebook,
-                ProfileInstagram = employee.ProfileInstagram,
-                ProfileLinkedin = employee.ProfileLinkedin,
+                EmployeeModel = new UpdateEmployeeQueryModel
+                {
+                    PhoneNumber = employee.PhoneNumber,
+                    ProfileFacebook = employee.ProfileFacebook,
+                    ProfileInstagram = employee.ProfileInstagram,
+                    ProfileLinkedin = employee.ProfileLinkedin,
+                    Password = employee.Password
+                }
             });
         }
         #endregion
