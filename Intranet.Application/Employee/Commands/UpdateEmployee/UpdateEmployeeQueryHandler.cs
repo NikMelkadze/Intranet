@@ -21,10 +21,16 @@ namespace Intranet.Application.Employee.Commands.UpdateEmployee
             var id = await _userValidationService.CheckCurrentUserOperationReturnId(request.HttpUser, request.UserId);
             var user = await _userManager.FindByIdAsync(id);
 
-            user.PhoneNumber = request.PhoneNumber ?? user.PhoneNumber;
-            user.ProfileInstagram = request.ProfileInstagram ?? user.ProfileInstagram;
-            user.ProfileFacebook = request.ProfileFacebook ?? user.ProfileFacebook;
-            user.ProfileLinkedin = request.ProfileLinkedin ?? user.ProfileLinkedin;
+            if (request.EmployeeModel.Password != null)
+            {
+                PasswordHasher<ApplicationUserDTO> passwordHasher = new PasswordHasher<ApplicationUserDTO>();
+                user.PasswordHash = passwordHasher.HashPassword(user, request.EmployeeModel.Password);
+            }
+            user.PhoneNumber = request.EmployeeModel.PhoneNumber ?? user.PhoneNumber;
+            user.ProfileInstagram = request.EmployeeModel.ProfileInstagram ?? user.ProfileInstagram;
+            user.ProfileFacebook = request.EmployeeModel.ProfileFacebook ?? user.ProfileFacebook;
+            user.ProfileLinkedin = request.EmployeeModel.ProfileLinkedin ?? user.ProfileLinkedin;
+
             try
             {
                 await _userManager.UpdateAsync(user);

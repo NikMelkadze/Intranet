@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Intranet.Application.Catalogs.Interests;
 using Intranet.Application.Catalogs.Interests.DeleteInterest;
 using Intranet.Application.Catalogs.Interests.GetInterests;
 using Intranet.Application.Employee.AddEmployeeInterests;
+using Intranet.Application.Employee.Commands.UpdateEmployee;
 using Intranet.Application.Services;
 using Intranet.Application.User.Login;
 using Intranet.Application.User.Registration;
@@ -12,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Reflection;
 using System.Text;
 
 namespace Intranet.Application.Common.Extensions
@@ -78,8 +82,9 @@ namespace Intranet.Application.Common.Extensions
             _ = services.AddMediatR(typeof(LoginQueryHandler).Assembly, typeof(RegisterQueryHandler).Assembly, typeof(CreateInterestCommandHandler).Assembly,
                 typeof(GetInterestsQueryHandler).Assembly, typeof(DeleteInterestCommandHandler).Assembly, typeof(AddEmployeeInterestCommandHandler).Assembly);
 
-            //FluentVladiation
-            _ = services.AddValidatorsFromAssembly(typeof(LoginQuery).Assembly);
+            //FluentVladiation\
+            _ = services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateEmployeeQueryModel>());
 
             //Services
             _ = services.AddTransient<IUserService, UserService>();
