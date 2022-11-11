@@ -21,6 +21,7 @@ namespace Intranet.Application.Services
         private readonly UserManager<ApplicationUserDTO> _userManager;
         private readonly IConfiguration _configuration;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private const string DefaultPassword = "Aa123123.";
 
         public UserService(UserManager<ApplicationUserDTO> userManager, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
         {
@@ -87,15 +88,13 @@ namespace Intranet.Application.Services
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Position = request.Position,
-                ProfileFacebook = request.ProfileFacebook,
-                ProfileInstagram = request.ProfileInstagram,
-                ProfileLinkedin = request.ProfileLinkedin,
+                Sex = request.Sex,
                 Image = await ImageConvertor.ImageToByteArr(null, cancellationToken)
             };
 
             try
             {
-                result = await _userManager.CreateAsync(user, request.Password);
+                result = await _userManager.CreateAsync(user, DefaultPassword);
             }
             catch (Exception ex)
             {
@@ -137,7 +136,7 @@ namespace Intranet.Application.Services
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddHours(3),
+                expires: DateTime.Now.AddYears(2),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );

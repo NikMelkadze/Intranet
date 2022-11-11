@@ -12,8 +12,6 @@ namespace Intranet.Application.User.Registration
         public RegisterQueryValidator()
         {
             _ = RuleFor(x => x.Email).NotNull().Matches(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").WithMessage("Invalid EMail");
-            _ = RuleFor(x => x.Password).NotNull().Matches(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").WithMessage("Invalid EMail");
-
         }
     }
 }
