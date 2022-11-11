@@ -34,7 +34,6 @@ namespace Intranet.Controllers
             return await Mediator.Send(new RegisterQuery
             {
                 Email = model.Email,
-                Password = model.Password,
                 DateOfBirth = model.DateOfBirth,
                 DepartmentId = model.DepartmentId,
                 FirstName = model.FirstName,
@@ -42,9 +41,7 @@ namespace Intranet.Controllers
                 PhoneNumber = model.PhoneNumber,
                 Position = model.Position,
                 UserRole = model.UserRole,
-                ProfileFacebook = model.ProfileFacebook,
-                ProfileInstagram = model.ProfileInstagram,
-                ProfileLinkedin = model.ProfileLinkedin,
+                Sex = model.Sex,
             });
         }
     }
